@@ -74,7 +74,7 @@ class ChefAPI(object):
             self.set_default()
 
     @classmethod
-    def from_config_file(cls, path):
+    def from_config_file(cls, path, url=None, key_path=None, client_name=None):
         """Load Chef API paraters from a config file. Returns None if the
         config can't be used.
         """
@@ -83,7 +83,6 @@ class ChefAPI(object):
             # Can't even read the config file
             log.debug('Unable to read config file "%s"', path)
             return
-        url = key_path = client_name = None
         ssl_verify = True
         for line in open(path):
             if not line.strip() or line.startswith('#'):
